@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { supabase } from '../supabase/supabaseService';
+import { ToastAndroid } from 'react-native';
 
 interface AuthState {
   user: any;
@@ -23,7 +24,8 @@ export const loginUser = createAsyncThunk(
 
 
     if (error) {
-
+      console.log('Login error:', error);
+      ToastAndroid.show(error.message, ToastAndroid.LONG);
       return rejectWithValue(error.message);
     }
 
@@ -32,8 +34,7 @@ export const loginUser = createAsyncThunk(
 );
 
 
-export const registerUser = createAsyncThunk(
-  'auth/registerUser',
+export const registerUser = createAsyncThunk('auth/registerUser',
   async ({ name, email, password }: any, { rejectWithValue }) => {
     const { data, error } = await supabase.auth.signUp({
       email,

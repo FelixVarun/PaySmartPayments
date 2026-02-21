@@ -144,46 +144,7 @@ const HomeScreen = ({ navigation }: any) => {
       </ImageBackground>
 
       <ScrollView>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <Text
-            style={{
-              color: '#000',
-              fontSize: 18,
-              padding: 20,
-              fontWeight: '600',
-            }}
-          >
-            #SpecialForYou
-          </Text>
-          <Text
-            style={{
-              color: 'grey',
-              fontSize: 14,
-              padding: 20,
-              fontWeight: '600',
-            }}
-          >
-            See All
-          </Text>
-        </View>
-
-        <View style={{ height: 160 }}>
-          <FlatList
-            data={OFFERS}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 20 }}
-            ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
-          />
-        </View>
+       
 
         <View
           style={{
@@ -271,13 +232,13 @@ const HomeScreen = ({ navigation }: any) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={item => item.id}
-          contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 10 }}
+          contentContainerStyle={{ paddingHorizontal: 20, }}
           renderItem={({ item }) => {
             const existingItem = cartItems.find(i => i.id === item.id);
             return (
               <View
                 style={{
-                  paddingBottom: 40,
+                  // paddingBottom: 20,
                   marginRight: -10,
                   transform: [{ scale: 0.9 }],
                 }}
@@ -292,6 +253,47 @@ const HomeScreen = ({ navigation }: any) => {
             );
           }}
         />
+
+         <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Text
+            style={{
+              color: '#000',
+              fontSize: 18,
+              padding: 20,
+              fontWeight: '600',
+            }}
+          >
+            #SpecialForYou
+          </Text>
+          <Text
+            style={{
+              color: 'grey',
+              fontSize: 14,
+              paddingHorizontal: 20,
+              fontWeight: '600',
+            }}
+          >
+            See All
+          </Text>
+        </View>
+
+        <View style={{ height: 150 }}>
+          <FlatList
+            data={OFFERS}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 20 }}
+            ItemSeparatorComponent={() => <View style={{  }} />}
+          />
+        </View>
       </ScrollView>
 
       {/* <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
@@ -414,16 +416,18 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   card: {
-    width: CARD_WIDTH,
-    height: 150,
-    borderRadius: 16,
+    width: 250,
+    height: 100,
+    borderRadius: 12,
     overflow: 'hidden',
-    elevation: 3,
-    backgroundColor: '#fff',
+    // elevation: 3,
+    // backgroundColor: '#fff',
+    // resizeMode: 'contain',
   },
   image: {
     width: '100%',
     height: '100%',
+      // resizeMode: 'cover',
   },
   overlay: {
     position: 'absolute',
